@@ -44,6 +44,15 @@ def follow(portal):
     save_rotonde(rotonde)
     print "followed '{}'".format(portal)
 
+def unfollow(portal):
+    rotonde = get_rotonde()
+    if portal in rotonde["portal"]:
+        rotonde["portal"].remove(portal)
+        print "unfollowed '{}'".format(portal)
+    else:
+        print "you weren't following {}".format(portal)
+    save_rotonde(rotonde)
+
 def get_rotonde():
     # fetch the location of your rotonde file
     settings = load_settings()
@@ -96,3 +105,4 @@ if __name__ == "__main__":
             write(data)
         elif command == "save": save_location(data)
         elif command == "follow": follow(data)
+        elif command == "unfollow": unfollow(data)
