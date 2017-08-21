@@ -37,6 +37,13 @@ def write(msg):
     save_rotonde(rotonde)
     print "published '{}'".format(msg)
 
+def follow(portal):
+    rotonde = get_rotonde()
+    if portal not in rotonde["portal"]:
+        rotonde["portal"].append(portal)
+    save_rotonde(rotonde)
+    print "followed '{}'".format(portal)
+
 def get_rotonde():
     # fetch the location of your rotonde file
     settings = load_settings()
@@ -88,3 +95,4 @@ if __name__ == "__main__":
             check_settings()
             write(data)
         elif command == "save": save_location(data)
+        elif command == "follow": follow(data)
